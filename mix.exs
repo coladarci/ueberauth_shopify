@@ -36,7 +36,7 @@ defmodule UeberauthShopify.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:oauth2, "~> 0.8"},
+    [{:oauth2, "~> 1.0"},
      {:ueberauth, "~> 0.4"},
      {:earmark, "~> 1.0", only: :dev},
      {:ex_doc, "~> 0.14.0", only: :dev}]
