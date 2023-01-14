@@ -84,8 +84,7 @@ defmodule Ueberauth.Strategy.Shopify do
   def handle_request!(%Plug.Conn{ params: %{ "shop" => shop } } = conn) do
     scopes = conn.params["scope"] || option(conn, :default_scope)
     opts = [ site: "https://" <> shop ]
-    params = [ scope: scopes ]
-    params = if conn.params["state"], do: Keyword.put(params, :state, conn.params["state"]), else: params
+    params = with_state_param([ scope: scopes ], conn)
     params = Keyword.put(params, :redirect_uri, callback_url(conn))
 
     redirect!(conn, Ueberauth.Strategy.Shopify.OAuth.authorize_url!(params, opts))
